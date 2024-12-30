@@ -1,0 +1,24 @@
+services:
+  executor:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Optional, default is 'Dockerfile'
+    environment:
+      PRIVATE_KEY_LOCAL: "0xxxxxxxxxxxx"
+      ENABLED_NETWORKS: "arbitrum-sepolia,base-sepolia,optimism-sepolia,l1rn"
+      EXECUTOR_PROCESS_ORDERS: "true"
+      EXECUTOR_PROCESS_CLAIMS: "true"
+      NODE_ENV: "testnet"
+      LOG_LEVEL: "debug"
+      LOG_PRETTY: "false"
+      EXECUTOR_MAX_L3_GAS_PRICE: "500"
+      EXECUTOR_PROCESS_PENDING_ORDERS_FROM_API: "false"
+      RPC_ENDPOINTS_BSSP: "https://sepolia.base.org"
+      RPC_ENDPOINTS_OPSP: "https://sepolia.optimism.io"
+      RPC_ENDPOINTS_ARBT: "https://sepolia-rollup.arbitrum.io/rpc"
+      RPC_ENDPOINTS_L1RN: "https://brn.rpc.caldera.xyz"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "3"
