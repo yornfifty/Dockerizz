@@ -1,3 +1,6 @@
+# Application version
+ARG APP_VERSION=v0.31.0
+
 # Use a minimal base image
 FROM debian:bullseye-slim
 
@@ -11,10 +14,10 @@ RUN apt-get update && \
     ca-certificates \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Download and extract the executor binary
-RUN wget https://github.com/t3rn/executor-release/releases/download/v0.31.0/executor-linux-v0.31.0.tar.gz \
-    && tar -xzf executor-linux-v0.31.0.tar.gz \
-    && rm executor-linux-v0.31.0.tar.gz
+# Download and extract the executor binary using the version variable
+RUN wget https://github.com/t3rn/executor-release/releases/download/${APP_VERSION}/executor-linux-${APP_VERSION}.tar.gz \
+    && tar -xzf executor-linux-${APP_VERSION}.tar.gz \
+    && rm executor-linux-${APP_VERSION}.tar.gz
 
 # Move the binary to a standard location and make it executable
 # Find the actual executable and make it executable
